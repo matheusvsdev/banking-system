@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: bank-system
+  profiles:
+    active: ${APP_PROFILE:test}
+  jpa:
+    open-in-view: false

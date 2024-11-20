@@ -21,7 +21,20 @@ public class User {
 
     private LocalDate birthDate;
 
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
     public User() {
+    }
+
+    public User(Long id, String userImageUrl, String fullName, String cpf, LocalDate birthDate, Address address) {
+        this.id = id;
+        this.userImageUrl = userImageUrl;
+        this.fullName = fullName;
+        this.cpf = cpf;
+        this.birthDate = birthDate;
+        this.address = address;
     }
 
     public Long getId() {
@@ -58,6 +71,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
