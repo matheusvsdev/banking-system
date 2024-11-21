@@ -12,7 +12,7 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String cep;
+    private String zipCode;
 
     @Enumerated(EnumType.STRING)
     private State state;
@@ -30,16 +30,27 @@ public class Address {
     public Address() {
     }
 
+    public Address(Long id, String zipCode, State state, String city, String district, String street, String number, String complement) {
+        this.id = id;
+        this.zipCode = zipCode;
+        this.state = state;
+        this.city = city;
+        this.district = district;
+        this.street = street;
+        this.number = number;
+        this.complement = complement;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public String getCep() {
-        return cep;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public State getState() {

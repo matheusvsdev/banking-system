@@ -3,9 +3,7 @@ package com.matheusvsdev.banking_system.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
@@ -19,31 +17,33 @@ public class User {
 
     private String fullName;
 
-    private String cpf;
+    private String socialSecurityNumber;
 
     private LocalDate birthDate;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @OneToOne(mappedBy = "user")
+    private PersonalAccount personalAccount;
 
     @OneToMany(mappedBy = "user")
-    private List<Account> accounts = new ArrayList<>();
+    private List<BusinessAccountEntity> businessAccounts;
 
     public User() {
     }
 
-    public User(Long id, String userImageUrl, String fullName, String cpf, LocalDate birthDate, Address address) {
+    public User(Long id, String userImageUrl, String fullName, String socialSecurityNumber, LocalDate birthDate) {
         this.id = id;
         this.userImageUrl = userImageUrl;
         this.fullName = fullName;
-        this.cpf = cpf;
+        this.socialSecurityNumber = socialSecurityNumber;
         this.birthDate = birthDate;
-        this.address = address;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserImageUrl() {
@@ -62,12 +62,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
     public LocalDate getBirthDate() {
@@ -78,29 +78,19 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public Address getAddress() {
-        return address;
+    public PersonalAccount getPersonalAccount() {
+        return personalAccount;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setPersonalAccount(PersonalAccount personalAccount) {
+        this.personalAccount = personalAccount;
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
+    public List<BusinessAccountEntity> getBusinessAccounts() {
+        return businessAccounts;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        User user = (User) object;
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public void setBusinessAccounts(List<BusinessAccountEntity> businessAccounts) {
+        this.businessAccounts = businessAccounts;
     }
 }
