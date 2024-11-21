@@ -1,7 +1,7 @@
 package com.matheusvsdev.banking_system.dto;
 
-import com.matheusvsdev.banking_system.entity.Address;
-import com.matheusvsdev.banking_system.entity.User;
+import com.matheusvsdev.banking_system.entity.AddressEntity;
+import com.matheusvsdev.banking_system.entity.UserEntity;
 
 public class CreatePersonalAccountDTO {
 
@@ -9,14 +9,14 @@ public class CreatePersonalAccountDTO {
 
     private String phone;
 
-    private User user;
+    private UserEntity user;
 
-    private Address address;
+    private AddressEntity address;
 
     public CreatePersonalAccountDTO() {
     }
 
-    public CreatePersonalAccountDTO(String email, String phone, User user, Address address) {
+    public CreatePersonalAccountDTO(String email, String phone, UserEntity user, AddressEntity address) {
         this.email = email;
         this.phone = phone;
         this.user = user;
@@ -31,11 +31,11 @@ public class CreatePersonalAccountDTO {
         return phone;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public Address getAddress() {
+    public AddressEntity getAddress() {
         return address;
     }
 }

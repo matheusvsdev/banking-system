@@ -1,16 +1,17 @@
-package com.matheusvsdev.banking_system.entity;
+package com.matheusvsdev.banking_system.entity.factory;
 
 import com.matheusvsdev.banking_system.dto.CreatePersonalAccountDTO;
+import com.matheusvsdev.banking_system.entity.AccountStatus;
+import com.matheusvsdev.banking_system.entity.PersonalAccountEntity;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 @Component
 public class PersonalAccountImpl implements PersonalAccountFactory {
     @Override
-    public PersonalAccount createAccount(CreatePersonalAccountDTO dto) {
-        PersonalAccount personalAccount = new PersonalAccount();
+    public PersonalAccountEntity createAccount(CreatePersonalAccountDTO dto) {
+        PersonalAccountEntity personalAccount = new PersonalAccountEntity();
         personalAccount.setEmail(dto.getEmail());
         personalAccount.setPhone(dto.getPhone());
         personalAccount.setStatus(AccountStatus.ACTIVE);

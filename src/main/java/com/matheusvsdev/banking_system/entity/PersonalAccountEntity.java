@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_personal_accounts")
-public class PersonalAccount extends Account {
+public class PersonalAccountEntity extends Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +32,14 @@ public class PersonalAccount extends Account {
     @OneToOne
     @JoinColumn(name = "user_id")
     @Cascade(CascadeType.ALL)
-    private User user;
+    private UserEntity user;
 
     @OneToOne
     @JoinColumn(name = "address_id")
     @Cascade(CascadeType.ALL)
-    private Address address;
+    private AddressEntity address;
 
-    public PersonalAccount() {
+    public PersonalAccountEntity() {
     }
 
 
@@ -109,19 +109,19 @@ public class PersonalAccount extends Account {
         this.balance = balance;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public Address getAddress() {
+    public AddressEntity getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressEntity address) {
         this.address = address;
     }
 }

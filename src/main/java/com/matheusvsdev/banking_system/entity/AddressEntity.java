@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_address")
-public class Address {
+public class AddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,10 @@ public class Address {
 
     private String complement;
 
-    public Address() {
+    public AddressEntity() {
     }
 
-    public Address(Long id, String zipCode, State state, String city, String district, String street, String number, String complement) {
+    public AddressEntity(Long id, String zipCode, State state, String city, String district, String street, String number, String complement) {
         this.id = id;
         this.zipCode = zipCode;
         this.state = state;
@@ -146,7 +146,7 @@ public class Address {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
 
-        Address address = (Address) object;
+        AddressEntity address = (AddressEntity) object;
         return Objects.equals(id, address.id);
     }
 

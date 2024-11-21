@@ -33,7 +33,7 @@ public class BusinessAccountEntity extends Account {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
     public BusinessAccountEntity() {
     }

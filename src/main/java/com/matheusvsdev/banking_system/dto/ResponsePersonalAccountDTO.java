@@ -1,11 +1,10 @@
 package com.matheusvsdev.banking_system.dto;
 
 import com.matheusvsdev.banking_system.entity.AccountStatus;
-import com.matheusvsdev.banking_system.entity.PersonalAccount;
+import com.matheusvsdev.banking_system.entity.PersonalAccountEntity;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 
 public class ResponsePersonalAccountDTO {
 
@@ -39,7 +38,7 @@ public class ResponsePersonalAccountDTO {
         this.addressId = addressId;
     }
 
-    public static ResponsePersonalAccountDTO fromEntity(PersonalAccount entity) {
+    public static ResponsePersonalAccountDTO fromEntity(PersonalAccountEntity entity) {
         return new ResponsePersonalAccountDTO(
                 entity.getId(),
                 entity.getEmail(),

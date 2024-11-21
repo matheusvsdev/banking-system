@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +22,15 @@ public class User {
     private LocalDate birthDate;
 
     @OneToOne(mappedBy = "user")
-    private PersonalAccount personalAccount;
+    private PersonalAccountEntity personalAccount;
 
     @OneToMany(mappedBy = "user")
     private List<BusinessAccountEntity> businessAccounts;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Long id, String userImageUrl, String fullName, String socialSecurityNumber, LocalDate birthDate) {
+    public UserEntity(Long id, String userImageUrl, String fullName, String socialSecurityNumber, LocalDate birthDate) {
         this.id = id;
         this.userImageUrl = userImageUrl;
         this.fullName = fullName;
@@ -78,11 +78,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public PersonalAccount getPersonalAccount() {
+    public PersonalAccountEntity getPersonalAccount() {
         return personalAccount;
     }
 
-    public void setPersonalAccount(PersonalAccount personalAccount) {
+    public void setPersonalAccount(PersonalAccountEntity personalAccount) {
         this.personalAccount = personalAccount;
     }
 
