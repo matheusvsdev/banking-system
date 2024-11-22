@@ -42,6 +42,17 @@ public class PersonalAccountEntity extends Account {
     public PersonalAccountEntity() {
     }
 
+    public PersonalAccountEntity(Long id, String email, String phone, AccountStatus status, Instant openingDate, LocalDate closingDate, BigDecimal balance, UserEntity user, AddressEntity address) {
+        this.id = id;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
+        this.balance = balance;
+        this.user = user;
+        this.address = address;
+    }
 
     @Override
     public void deposit(BigDecimal amount) {
