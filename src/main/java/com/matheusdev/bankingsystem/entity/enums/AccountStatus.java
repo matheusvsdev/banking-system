@@ -1,15 +1,14 @@
 package com.matheusdev.bankingsystem.entity.enums;
 
-public enum AccountType {
-    PERSONAL("Pessoa Física"),
-    BUSINESS("Pessoa Jurídica");
+public enum AccountStatus {
+    ACTIVE("Ativa"),
+    INACTIVE("Inativa");
 
     private final String description;
 
-    AccountType(String description) {
+    AccountStatus(String description) {
         this.description = description;
     }
-
     public String getDescription() {
         return description;
     }

@@ -1,12 +1,13 @@
 package com.matheusdev.bankingsystem.entity.enums;
 
-public enum AccountType {
-    PERSONAL("Pessoa Física"),
-    BUSINESS("Pessoa Jurídica");
+public enum TransactionType {
+    DEPOSIT("Depósito"),
+    WITHDRAWAL("Saque"),
+    TRANSFER("Transferência");
 
     private final String description;
 
-    AccountType(String description) {
+    TransactionType(String description) {
         this.description = description;
     }
 

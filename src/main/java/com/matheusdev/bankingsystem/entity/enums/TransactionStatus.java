@@ -1,12 +1,14 @@
 package com.matheusdev.bankingsystem.entity.enums;
 
-public enum AccountType {
-    PERSONAL("Pessoa Física"),
-    BUSINESS("Pessoa Jurídica");
+public enum TransactionStatus {
+    COMPLETED("Concluída"),
+    DENIED("Negada"),
+    PENDING("Pendente"),
+    CANCELLED("Cancelada");
 
     private final String description;
 
-    AccountType(String description) {
+    TransactionStatus(String description) {
         this.description = description;
     }
 

@@ -1,5 +1,6 @@
 package com.matheusdev.bankingsystem.entity;
 
+import com.matheusdev.bankingsystem.entity.enums.AccountStatus;
 import com.matheusdev.bankingsystem.entity.enums.AccountType;
 import jakarta.persistence.*;
 
@@ -21,6 +22,9 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
 
     public Account() {
     }
@@ -71,6 +75,14 @@ public class Account {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
     @Override
