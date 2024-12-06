@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -26,7 +28,25 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "account")
+    private List<Transaction> transactions = new ArrayList<>();
+
     public Account() {
+    }
+
+    public Account(Long id, String agency, String accountNumber, BigDecimal balance, Instant openingDate, AccountType accountType, AccountStatus accountStatus, User user) {
+        this.id = id;
+        this.agency = agency;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.openingDate = openingDate;
+        this.accountType = accountType;
+        this.accountStatus = accountStatus;
+        this.user = user;
     }
 
     public Long getId() {
@@ -83,6 +103,18 @@ public class Account {
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.matheusdev.bankingsystem.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,7 +22,19 @@ public class User {
     private String email;
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts = new ArrayList<>();
+
     public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, LocalDate birthDate, String email, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -69,6 +83,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 
     @Override

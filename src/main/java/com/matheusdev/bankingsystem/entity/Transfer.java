@@ -3,6 +3,7 @@ package com.matheusdev.bankingsystem.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public class Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
+    private Instant transferDate;
     private BigDecimal amount;
 
     @ManyToOne
@@ -27,8 +28,9 @@ public class Transfer {
     public Transfer() {
     }
 
-    public Transfer(UUID id, BigDecimal amount, Account sender, Account recipient) {
+    public Transfer(UUID id, Instant transferDate, BigDecimal amount, Account sender, Account recipient) {
         this.id = id;
+        this.transferDate = transferDate;
         this.amount = amount;
         this.sender = sender;
         this.recipient = recipient;
@@ -40,6 +42,14 @@ public class Transfer {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public Instant getTransferDate() {
+        return transferDate;
+    }
+
+    public void setTransferDate(Instant transferDate) {
+        this.transferDate = transferDate;
     }
 
     public BigDecimal getAmount() {

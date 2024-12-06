@@ -25,7 +25,20 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
     public Transaction() {
+    }
+
+    public Transaction(UUID id, Instant transactionDate, BigDecimal amount, TransactionType transactionType, TransactionStatus transactionStatus, Account account) {
+        this.id = id;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+        this.transactionType = transactionType;
+        this.transactionStatus = transactionStatus;
+        this.account = account;
     }
 
     public UUID getId() {
@@ -66,6 +79,14 @@ public class Transaction {
 
     public void setTransactionStatus(TransactionStatus transactionStatus) {
         this.transactionStatus = transactionStatus;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
