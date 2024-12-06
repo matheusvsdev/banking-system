@@ -2,8 +2,7 @@ package com.matheusdev.bankingsystem.entity.enums;
 
 public enum TransactionType {
     DEPOSIT("Depósito"),
-    WITHDRAWAL("Saque"),
-    TRANSFER("Transferência");
+    WITHDRAWAL("Saque");
 
     private final String description;
 
