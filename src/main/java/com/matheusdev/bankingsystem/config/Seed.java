@@ -1,6 +1,7 @@
 package com.matheusdev.bankingsystem.config;
 
 import com.matheusdev.bankingsystem.dto.CreateAccountDTO;
+import com.matheusdev.bankingsystem.dto.ResponseAccountDTO;
 import com.matheusdev.bankingsystem.entity.Account;
 import com.matheusdev.bankingsystem.entity.User;
 import com.matheusdev.bankingsystem.entity.enums.AccountStatus;
@@ -72,6 +73,14 @@ public class Seed implements CommandLineRunner {
 
         entityManager.persist(account1);
         entityManager.persist(account2);
+
+        ResponseAccountDTO responseAccount1DTO = new ResponseAccountDTO(account1);
+        ResponseAccountDTO responseAccount2DTO = new ResponseAccountDTO(account2);
+
+        System.out.println("\n");
+        System.out.printf(responseAccount1DTO.toString());
+        System.out.println("\n");
+        System.out.printf(responseAccount2DTO.toString());
 
     }
 }

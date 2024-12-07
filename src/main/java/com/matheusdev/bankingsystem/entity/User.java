@@ -90,6 +90,16 @@ public class User {
     }
 
     @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", email='" + email +'}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
 
