@@ -5,6 +5,9 @@ import com.matheusdev.bankingsystem.dto.CreateUserDTO;
 import com.matheusdev.bankingsystem.entity.Account;
 import com.matheusdev.bankingsystem.entity.User;
 import com.matheusdev.bankingsystem.entity.enums.AccountStatus;
+import com.matheusdev.bankingsystem.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -13,6 +16,9 @@ import java.util.Random;
 
 @Component
 public class AccountFactoryImpl implements AccountFactory {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Account createAccount(CreateAccountDTO dto) {
@@ -32,7 +38,7 @@ public class AccountFactoryImpl implements AccountFactory {
         user.setLastName(createUserDTO.getLastName());
         user.setBirthDate(createUserDTO.getBirthDate());
         user.setEmail(createUserDTO.getEmail());
-        user.setPassword(createUserDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
         return user;
     }
 
