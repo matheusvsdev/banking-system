@@ -1,7 +1,6 @@
 package com.matheusdev.bankingsystem.dto;
 
 import com.matheusdev.bankingsystem.entity.Account;
-import com.matheusdev.bankingsystem.entity.User;
 import com.matheusdev.bankingsystem.entity.enums.AccountStatus;
 import com.matheusdev.bankingsystem.entity.enums.AccountType;
 
@@ -17,12 +16,12 @@ public class ResponseAccountDTO {
     private Instant openingDate;
     private AccountType accountType;
     private AccountStatus accountStatus;
-    private User user;
+    private ResponseUserDTO user;
 
     public ResponseAccountDTO() {
     }
 
-    public ResponseAccountDTO(Long id, String agency, String accountNumber, BigDecimal balance, Instant openingDate, AccountType accountType, AccountStatus accountStatus, User user) {
+    public ResponseAccountDTO(Long id, String agency, String accountNumber, BigDecimal balance, Instant openingDate, AccountType accountType, AccountStatus accountStatus, ResponseUserDTO user) {
         this.id = id;
         this.agency = agency;
         this.accountNumber = accountNumber;
@@ -41,7 +40,7 @@ public class ResponseAccountDTO {
         this.openingDate = account.getOpeningDate();
         this.accountType = account.getAccountType();
         this.accountStatus = account.getAccountStatus();
-        this.user = account.getUser();
+        this.user = new ResponseUserDTO(account.getUser());
     }
 
     public Long getId() {
@@ -72,7 +71,7 @@ public class ResponseAccountDTO {
         return accountStatus;
     }
 
-    public User getUser() {
+    public ResponseUserDTO getUser() {
         return user;
     }
 

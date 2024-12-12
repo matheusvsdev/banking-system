@@ -1,33 +1,32 @@
 package com.matheusdev.bankingsystem.dto;
 
 import com.matheusdev.bankingsystem.entity.Account;
-import com.matheusdev.bankingsystem.entity.User;
 import com.matheusdev.bankingsystem.entity.enums.AccountType;
 
 public class CreateAccountDTO {
 
     private AccountType accountType;
 
-    private User user;
+    private CreateUserDTO user;
 
     public CreateAccountDTO() {
     }
 
-    public CreateAccountDTO(AccountType accountType, User user) {
+    public CreateAccountDTO(AccountType accountType, CreateUserDTO user) {
         this.accountType = accountType;
         this.user = user;
     }
 
     public CreateAccountDTO(Account entity) {
         this.accountType = entity.getAccountType();
-        this.user = new User();
+        this.user = new CreateUserDTO(entity.getUser());
     }
 
     public AccountType getAccountType() {
         return accountType;
     }
 
-    public User getUser() {
+    public CreateUserDTO getUser() {
         return user;
     }
 }
