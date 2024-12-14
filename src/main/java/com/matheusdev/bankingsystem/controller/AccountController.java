@@ -1,8 +1,7 @@
 package com.matheusdev.bankingsystem.controller;
 
+import com.matheusdev.bankingsystem.dto.ResponseAccountDTO;
 import com.matheusdev.bankingsystem.dto.AccountDTO;
-import com.matheusdev.bankingsystem.dto.CreateAccountDTO;
-import com.matheusdev.bankingsystem.entity.AccountEntity;
 import com.matheusdev.bankingsystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +21,12 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<AccountDTO> createAccount(@RequestBody CreateAccountDTO dto) {
-        AccountDTO account = accountService.createAccount(dto);
+    public ResponseEntity<ResponseAccountDTO> createAccount(@RequestBody AccountDTO accountDTO) {
+        ResponseAccountDTO account = accountService.createAccount(accountDTO);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(account.getUser().getId())
+                .buildAndExpand(account.getId())
                 .toUri();
 
         return ResponseEntity.created(uri).body(account);

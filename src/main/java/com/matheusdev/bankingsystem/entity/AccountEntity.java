@@ -13,7 +13,7 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String agency = "001";
+    private String agency;
     private String accountNumber;
     private BigDecimal balance = BigDecimal.ZERO;
     private Instant openingDate;

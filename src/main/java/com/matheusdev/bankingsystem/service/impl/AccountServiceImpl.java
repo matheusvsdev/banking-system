@@ -1,7 +1,7 @@
 package com.matheusdev.bankingsystem.service.impl;
 
+import com.matheusdev.bankingsystem.dto.ResponseAccountDTO;
 import com.matheusdev.bankingsystem.dto.AccountDTO;
-import com.matheusdev.bankingsystem.dto.CreateAccountDTO;
 import com.matheusdev.bankingsystem.entity.AccountEntity;
 import com.matheusdev.bankingsystem.entity.factory.AccountFactory;
 import com.matheusdev.bankingsystem.repository.AccountRepository;
@@ -19,8 +19,8 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Override
-    public AccountDTO createAccount(CreateAccountDTO createAccountDTO) {
-        AccountEntity accountEntity = accountFactory.createAccount(createAccountDTO);
-        return new AccountDTO(accountRepository.save(accountEntity));
+    public ResponseAccountDTO createAccount(AccountDTO accountDTO) {
+        AccountEntity account = accountFactory.createAccount(accountDTO);
+        return new ResponseAccountDTO(accountRepository.save(account));
     }
 }
