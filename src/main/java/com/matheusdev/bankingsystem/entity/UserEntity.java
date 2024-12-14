@@ -2,37 +2,41 @@ package com.matheusdev.bankingsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String fullName;
+    private String cpf;
     private LocalDate birthDate;
+    private BigDecimal salary;
 
     @Column(unique = true)
     private String email;
     private String password;
 
     @OneToOne(mappedBy = "user")
-    private Account account;
+    private AccountEntity account;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(Long id, String firstName, String lastName, LocalDate birthDate, String email, String password) {
+    public UserEntity(Long id, String fullName, String cpf, LocalDate birthDate, BigDecimal salary, String email, String password, AccountEntity account) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
+        this.cpf = cpf;
         this.birthDate = birthDate;
+        this.salary = salary;
         this.email = email;
         this.password = password;
+        this.account = account;
     }
 
     public Long getId() {
@@ -43,20 +47,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public LocalDate getBirthDate() {
@@ -65,6 +69,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
     }
 
     public String getEmail() {
@@ -83,25 +95,19 @@ public class User {
         this.password = password;
     }
 
-    public Account getAccount() {
+    public AccountEntity getAccount() {
         return account;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", email='" + email +'}';
+    public void setAccount(AccountEntity account) {
+        this.account = account;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserEntity user = (UserEntity) o;
         return Objects.equals(id, user.id);
     }
 

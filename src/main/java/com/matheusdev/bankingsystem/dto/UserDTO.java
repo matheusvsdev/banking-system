@@ -2,37 +2,37 @@ package com.matheusdev.bankingsystem.dto;
 
 import com.matheusdev.bankingsystem.entity.UserEntity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class CreateUserDTO {
+public class UserDTO {
 
+    private Long id;
     private String fullName;
     private String cpf;
     private LocalDate birthDate;
-    private BigDecimal salary;
     private String email;
-    private String password;
 
-    public CreateUserDTO() {
+    public UserDTO() {
     }
 
-    public CreateUserDTO(String fullName, String cpf, LocalDate birthDate, BigDecimal salary, String email, String password) {
+    public UserDTO(Long id, String fullName, String cpf, LocalDate birthDate, String email) {
+        this.id = id;
         this.fullName = fullName;
         this.cpf = cpf;
         this.birthDate = birthDate;
-        this.salary = salary;
         this.email = email;
-        this.password = password;
     }
 
-    public CreateUserDTO(UserEntity entity) {
+    public UserDTO(UserEntity entity) {
+        this.id = entity.getId();
         this.fullName = entity.getFullName();
         this.cpf = entity.getCpf();
         this.birthDate = entity.getBirthDate();
-        this.salary = entity.getSalary();
         this.email = entity.getEmail();
-        this.password = entity.getPassword();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFullName() {
@@ -47,15 +47,8 @@ public class CreateUserDTO {
         return birthDate;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 }

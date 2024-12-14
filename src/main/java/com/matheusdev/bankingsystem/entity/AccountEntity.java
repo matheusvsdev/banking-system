@@ -1,18 +1,14 @@
 package com.matheusdev.bankingsystem.entity;
 
-import com.matheusdev.bankingsystem.entity.enums.AccountStatus;
-import com.matheusdev.bankingsystem.entity.enums.AccountType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_account")
-public class Account {
+public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,30 +19,28 @@ public class Account {
     private Instant openingDate;
 
     @Enumerated(EnumType.STRING)
-    private AccountType accountType;
-
-    @Enumerated(EnumType.STRING)
-    private AccountStatus accountStatus;
+    private Status status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
-    @OneToMany(mappedBy = "account")
-    private List<Transaction> transactions = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id")
+    private CardEntity card;
 
-    public Account() {
+    public AccountEntity() {
     }
 
-    public Account(Long id, String agency, String accountNumber, BigDecimal balance, Instant openingDate, AccountType accountType, AccountStatus accountStatus, User user) {
+    public AccountEntity(Long id, String agency, String accountNumber, BigDecimal balance, Instant openingDate, Status status, UserEntity user, CardEntity card) {
         this.id = id;
         this.agency = agency;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.openingDate = openingDate;
-        this.accountType = accountType;
-        this.accountStatus = accountStatus;
+        this.status = status;
         this.user = user;
+        this.card = card;
     }
 
     public Long getId() {
@@ -89,39 +83,54 @@ public class Account {
         this.openingDate = openingDate;
     }
 
-    public AccountType getAccountType() {
-        return accountType;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public AccountStatus getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(AccountStatus accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public CardEntity getCard() {
+        return card;
+    }
+
+    public void setCard(CardEntity card) {
+        this.card = card;
+    }
+
+    public enum Status {
+        ACTIVE("Ativa"),
+        INACTIVE("Inativa");
+
+        private final String description;
+
+        Status(String description) {
+            this.description = description;
+        }
+        public String getDescription() {
+            return description;
+        }
+
+        @Override
+        public String toString() {
+            return description;
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
 
-        Account account = (Account) o;
+        AccountEntity account = (AccountEntity) o;
         return Objects.equals(id, account.id);
     }
 
