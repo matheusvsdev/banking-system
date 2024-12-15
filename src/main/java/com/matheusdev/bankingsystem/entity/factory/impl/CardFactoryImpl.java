@@ -25,7 +25,7 @@ public class CardFactoryImpl implements CardFactory {
         card.setNumber(generateCardNumber());
         card.setExpirationDate(LocalDate.now().plusYears(5));
         card.setCvv(generateCvv());
-        card.setCreditLimit(getCreditLimit(userDTO));
+        card.setCreditLimit(creditLimit(userDTO));
         card.setConsumedLimit(BigDecimal.ZERO);
         card.setAvailableLimit(card.getCreditLimit());
     }
@@ -48,7 +48,7 @@ public class CardFactoryImpl implements CardFactory {
         return cvv.toString();
     }
 
-    private BigDecimal getCreditLimit(UserDTO user) {
+    private BigDecimal creditLimit(UserDTO user) {
         if (user.getSalary().compareTo(new BigDecimal(1000.00)) >= 0) {
             return user.getSalary().multiply(new BigDecimal(0.5));
         } else {
